@@ -4,14 +4,16 @@
 # Sadly, most trees do not end up there, but those that do can be very useful.
 # Another issue is that until recenty TreeBASE prohibited branch length
 # information, though more recent trees do (often) have this info. 
+library(treebase)
+?search_treebase
 GetFromTreeBase_exercise <- function() {
 	# Get all trees for Formica (a genus of ants), searching by taxon, with branch
 	# lengths
 	# Replace the "__________" with appropriate arguments
 	# When you run this, it'll take some time. But less time than sequencing
 	# and building the tree yourself.
-	trees <- search_treebase(input="__________", by="__________", 
-	branch_lengths="__________")
+	trees <- search_treebase(input="Formica", by="taxon", 
+	branch_lengths=TRUE)
 	
 	# Pull out just the biggest tree (for convenience)
 	biggest.tree <- trees[[which.max(sapply(trees, Ntip))]]
@@ -35,13 +37,14 @@ GetFromTreeBase_exercise <- function() {
 # TreeBASE, anyone, not just the author, can add trees to Open Tree's 
 # repository. Another important distinction is that Open Tree seeks to create
 # a single tree for all life by creating essentially a supreme super tree.
+library(rotl)
 GetTreeFromOpenTree_exercise <- function() {
 	# Now let's look for the gecko genus Anolis
 	# Figure out the id used for Anolis in Open Tree's database
 
 	# Replace the "__________" with appropriate arguments
 	
-	anolis.id <- tnrs_match_names("__________")$ott_id
+	anolis.id <- tnrs_match_names("Anolis")$ott_id
 	
 	# Now get Open Tree's current best estimate of the phylogeny for the group
 	# They call this the tree of life; we can get the subtree for just this group.
